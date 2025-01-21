@@ -12,7 +12,7 @@
     "authtest": "jest --verbose ./__tests__/authflow.test.ts",
     "bootstrap": "cdk bootstrap --profile fsps-cdk-admin ",
     "synth": "cdk synth",
-    "deploy:local": "cdk synth && cdk deploy --require-approval never --all --profile fsps-cdk-admin --outputs-file cdk-outputs.json",
+    "deploy:local": "cdk synth && cdk deploy --require-approval never --all --profile fsps-cdk-admin --outputs-file ../cdk-outputs.json",
     "destroy": "cdk destroy --require-approval never --all --profile fsps-cdk-admin"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "typescript": "~5.6.2"
   },
   "dependencies": {
+    "@aws-cdk/aws-amplify-alpha": "^2.176.0-alpha.0",
     "@aws-cdk/aws-cognito-identitypool-alpha": "^2.176.0-alpha.0",
     "@aws-sdk/client-cognito-identity-provider": "^3.731.1",
     "@aws-sdk/client-dynamodb": "^3.731.1",
