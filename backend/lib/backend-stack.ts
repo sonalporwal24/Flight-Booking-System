@@ -30,7 +30,7 @@ export class BackendStack extends cdk.Stack {
             addUserPostConfirmation: computeStack.addUserToTableFunc
         });
 
-        console.log(JSON.stringify(context, null, 2))
+        /* console.log(JSON.stringify(context, null, 2))
 		const amplifyHosting = createAmplifyHosting(this, {
 			appName: appName,
 			account: context.env.account,
@@ -45,7 +45,7 @@ export class BackendStack extends cdk.Stack {
 				region: this.region,
 				apiUrl: "",
 			},
-		})
+		}) */
 
 
         // DynamoDB
@@ -56,7 +56,7 @@ export class BackendStack extends cdk.Stack {
         new cdk.CfnOutput(this, 'UserPoolId', {value: auth.userPool.userPoolId})
         new cdk.CfnOutput(this, 'UserPoolClientId', {value: auth.userPoolClient.userPoolClientId})
         // hosting
-        new cdk.CfnOutput(this, 'AmplifyAppId', {value: amplifyHosting.appId})
+        // new cdk.CfnOutput(this, 'AmplifyAppId', {value: amplifyHosting.appId})
         
     }
 }
