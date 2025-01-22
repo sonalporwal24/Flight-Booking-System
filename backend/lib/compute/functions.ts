@@ -14,7 +14,7 @@ type CreateFunctionsProps = {
 export function createFunctions(scope: Construct, props: CreateFunctionsProps){
 
     const addUserToTableFunc = new NodejsFunction(scope, `${props.appName}-AddUserToTableFunc`, {
-        functionName: 'addUserFunc',
+        functionName: `${props.appName}-AddUserFunc`,
         runtime: Runtime.NODEJS_18_X,
         handler: "handler",
         entry: path.join(

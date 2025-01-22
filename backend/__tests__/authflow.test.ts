@@ -1,5 +1,6 @@
 import * as cognito from "@aws-sdk/client-cognito-identity-provider";
 import Chance from "chance";
+import cdkOutput from '../../cdk-outputs.json';
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -12,6 +13,24 @@ const cognitoClient = new cognito.CognitoIdentityProviderClient({
 const change = new Chance();
 
 let firstName: string | undefined;
+
+const loadEnvironmentVariables = () => {
+    
+    console.log(cdkOutput); 
+
+    const output = cdkOutput[`FBS-Dev-Stack`]
+
+    const config = {
+        Auth: {
+            Cognito: {
+                UserPoolId: process.env.UserPoolId || output.UserPoolId,
+                UserPoolClientId: process.env.UserPoolClientId || output.UserPoolClientId,
+            },
+        }
+    }
+
+    return config
+}
 
 const createUser = () => {
     const firstName = change.first({nationality: "en"});
@@ -34,12 +53,13 @@ describe("Auth Test Flow", () => {
     let clientId: string | undefined;
 
     beforeAll(async () => {
+        const config = loadEnvironmentVariables();
         const user = createUser();
         email = user.email;
         password = user.password;
         fullname = user.fullname;
-        userPoolId = "ap-south-1_xQu2HAWWx";
-        clientId = "387d66jml8ihbovqe5q7cmq9ra";
+        userPoolId = config.Auth.Cognito.UserPoolId;
+        clientId = config.Auth.Cognito.UserPoolClientId;
     });
 
     it("User exist in User Pool and user's tool", async() => {

@@ -30,7 +30,7 @@ export function createAmplifyHosting(
 		{
 			assumedBy: new ServicePrincipal('amplify.amazonaws.com'),
 			description: `Role assumed by Amplify Hosting for deploying AWS CDK`,
-			roleName: `${props.appName}-amplify-deploy-from-cdk`,
+			roleName: `${props.appName}-Amplify-Deploy-from-CDK-2`,
 			maxSessionDuration: Duration.hours(1),
 			inlinePolicies: {
 				CdkDeploymentPolicy: new PolicyDocument({
@@ -54,7 +54,7 @@ export function createAmplifyHosting(
 
 	const amplifyApp = new amplify.App(scope, `${props.appName}-Hosting`, {
 		appName: `${props.appName}-Hosting`,
-		// role: amplifyDeployCDKRole,
+		role: amplifyDeployCDKRole,
 		sourceCodeProvider: new amplify.GitHubSourceCodeProvider({
 			owner: props.ghOwner,
 			repository: props.repo,
@@ -73,7 +73,7 @@ export function createAmplifyHosting(
 					preBuild: {
 						commands: [
 							'cd backend', //the buildspec file gets ran from the root of our project
-							'npm ci', //install the cdk deps
+							'npm ci --force', //install the cdk deps
 							// 'npm run codegen', //see package.json
 							// 'npm run build:resolvers', //see package.json
 							'npx aws-cdk deploy --require-approval never --outputs-file ../cdk-outputs.json', // deploy cdk (see package.json)
