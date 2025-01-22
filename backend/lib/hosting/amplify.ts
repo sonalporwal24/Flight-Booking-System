@@ -78,7 +78,7 @@ export function createAmplifyHosting(
 							// 'npm run build:resolvers', //see package.json
 							'npx aws-cdk deploy --require-approval never --outputs-file ../cdk-outputs.json', // deploy cdk (see package.json)
 							'cd ../frontend', // go back to the root of the project
-							'npm ci', // install the frontend deps,
+							'npm ci --force', // install the frontend deps,
 						],
 					},
 					build: {
