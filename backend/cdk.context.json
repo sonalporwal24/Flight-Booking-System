@@ -2,7 +2,7 @@
     "globals": {
         "appName": "FBS",
         "hosting": {
-            "ghTokenName": "github-token",
+            "ghTokenName": "github-token-4",
             "ghOwner": "daspapan",
             "repo": "Flight-Booking-System"
         }

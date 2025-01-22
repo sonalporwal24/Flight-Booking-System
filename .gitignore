@@ -130,3 +130,5 @@ dist
 .pnp.*
 
 *.bak
+cdk-outputs.json
+*.bak
